@@ -1,16 +1,20 @@
 # Deprecation Notice
+
 This library will be deprecating over the next year. We recommend users looking for a good GitHub JavaScript client library try [Octokit](https://github.com/octokit/rest.js/). Our current plan for 2019:
 
 **June-July**
- - review all open pull requests, either closing them or merging them
- - look through the ~100 open issues and determine if they're features, bugs, questions and so on
- 
+
+-  review all open pull requests, either closing them or merging them
+-  look through the ~100 open issues and determine if they're features, bugs, questions and so on
+
 **July-August**
- - submit new PRs to resolve the reported bugs and features
- 
+
+-  submit new PRs to resolve the reported bugs and features
+
 **September-December**
- - refuse all new feature issues
- - resolve security vulnerabilities
+
+-  refuse all new feature issues
+-  resolve security vulnerabilities
 
 Note that this isn't set in stone, so please come leave your feedback [here](https://github.com/github-tools/github/issues/564).
 
@@ -32,48 +36,51 @@ Note that this isn't set in stone, so please come leave your feedback [here](htt
    or using a new promise-based API. The promise-based API returns the raw Axios
    request promise.
  */
-import GitHub from 'github-api';
+import GitHub from "github-api";
 
 // unauthenticated client
 const gh = new GitHub();
 let gist = gh.getGist(); // not a gist yet
-gist.create({
-   public: true,
-   description: 'My first gist',
-   files: {
-      "file1.txt": {
-         content: "Aren't gists great!"
-      }
-   }
-}).then(function({data}) {
-   // Promises!
-   let createdGist = data;
-   return gist.read();
-}).then(function({data}) {
-   let retrievedGist = data;
-   // do interesting things
-});
+gist
+   .create({
+      public: true,
+      description: "My first gist",
+      files: {
+         "file1.txt": {
+            content: "Aren't gists great!",
+         },
+      },
+   })
+   .then(function ({ data }) {
+      // Promises!
+      let createdGist = data;
+      return gist.read();
+   })
+   .then(function ({ data }) {
+      let retrievedGist = data;
+      // do interesting things
+   });
 ```
 
 ```javascript
-var GitHub = require('github-api');
+var GitHub = require("github-api");
 
 // basic auth
 var gh = new GitHub({
-   username: 'FOO',
-   password: 'NotFoo'
+   username: "FOO",
+   password: "NotFoo",
    /* also acceptable:
       token: 'MY_OAUTH_TOKEN'
     */
 });
 
 var me = gh.getUser(); // no user specified defaults to the user for whom credentials were provided
-me.listNotifications(function(err, notifications) {
+me.listNotifications(function (err, notifications) {
    // do some stuff
 });
 
-var clayreimann = gh.getUser('clayreimann');
-clayreimann.listStarredRepos(function(err, repos) {
+var clayreimann = gh.getUser("clayreimann");
+clayreimann.listStarredRepos(function (err, repos) {
    // look at all the starred repos!
 });
 ```
@@ -84,6 +91,7 @@ clayreimann.listStarredRepos(function(err, repos) {
 should include updated JSDoc.
 
 ## Installation
+
 `Github.js` is available from `npm` or [unpkg][unpkg].
 
 ```shell
@@ -99,6 +107,7 @@ npm install github-api
 ```
 
 ## Compatibility
+
 `Github.js` is tested on node's LTS and current versions.
 
 [codecov]: https://codecov.io/github/github-tools/github?branch=master
